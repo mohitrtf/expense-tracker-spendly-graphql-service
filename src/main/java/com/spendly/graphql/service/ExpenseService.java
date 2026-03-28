@@ -20,7 +20,7 @@ public class ExpenseService {
 
     private WebClient client(String token) {
         return webClientBuilder
-                .baseUrl("http://localhost:8080/api/expenses")
+                .baseUrl("https://expense-tracker-java-app.onrender.com/api/expenses")
                 .defaultHeader("Authorization", token)
                 .build();
     }
