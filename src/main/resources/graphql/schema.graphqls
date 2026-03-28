@@ -1,0 +1,50 @@
+type Expense {
+    id: ID
+    title: String
+    description: String
+    amount: Float
+    date: String
+    category: String
+    paymentMethod: String
+    createdAt: String
+    updatedAt: String
+}
+
+type Query {
+    expenses(
+            category: String
+            startDate: String
+            endDate: String
+        ): [Expense]
+    expenseById(id: ID!): Expense
+}
+
+type Mutation {
+    createExpense(input: ExpenseInput!): Expense
+    updateExpense(id: ID!, input: ExpenseInput!): Expense
+    deleteExpense(id: ID!): Boolean
+}
+
+input ExpenseInput {
+    title: String
+    description: String
+    amount: Float
+    date: String
+    category: String
+    paymentMethod: String
+}
+
+type ExpenseSummary {
+    totalAmount: Float
+    totalCount: Int
+    thisMonthAmount: Float
+    lastMonthAmount: Float
+    byCategory: JSON
+    byMonth: JSON
+}
+
+extend type Query {
+    expenseSummary: ExpenseSummary
+}
+
+scalar JSON
